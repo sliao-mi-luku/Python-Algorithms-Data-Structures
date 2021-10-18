@@ -46,7 +46,7 @@ class Solution:
                 return l2
 
 """
-Runtime: 87 ms, 29%
+Runtime: 29%
 """
 ```
 ```python
@@ -87,7 +87,51 @@ Runtime: 78 ms, 38%
 """
 ```
 
-### 99. Recover Binary Search Tree
+## 57. Insert Interval
+```python
+class Solution:
+    def insert(intervals, newInterval):
+
+        res = []
+
+        if not intervals:
+            return [newInterval]
+
+        a, b = newInterval
+
+        if a > intervals[-1][-1]:
+            return intervals + [newInterval]
+
+        if b < intervals[0][0]:
+            return [newInterval] + intervals
+
+        while intervals:
+            x, y = intervals.pop(0)
+
+            if b < x:
+                return res + [[a, b], [x, y]] + intervals
+
+            if a > y:
+                res.append([x, y])
+                continue
+
+            if a >= x and b <= y:
+                return res + [[x, y]] + intervals
+
+            if a >= x:
+                a = x
+
+            if b <= y:
+                b = y
+
+        return res + [[a, b]]
+"""
+Runtime: 58%
+"""
+```
+
+
+## 99. Recover Binary Search Tree
 
 ```python
 class Solution:
