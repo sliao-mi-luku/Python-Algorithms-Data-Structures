@@ -1,4 +1,4 @@
-### 2. Add Two Numbers
+## 2. Add Two Numbers
 ```python
 class Solution:
     def addTwoNumbers(self, l1, l2):
@@ -87,7 +87,7 @@ Runtime: 78 ms, 38%
 """
 ```
 
-## 57. Insert Interval
+## 57. Insert Interval (58%)
 ```python
 class Solution:
     def insert(intervals, newInterval):
@@ -125,11 +125,20 @@ class Solution:
                 b = y
 
         return res + [[a, b]]
-"""
-Runtime: 58%
-"""
 ```
 
+## 62. Unique Paths (73%)
+```python
+def uniquePaths(m, n):
+
+    dp = [[1]*m]*n
+
+    for i in range(1, n):
+        for j in range(1, m):
+            dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+    return dp[-1][-1]
+```
 
 ## 99. Recover Binary Search Tree
 

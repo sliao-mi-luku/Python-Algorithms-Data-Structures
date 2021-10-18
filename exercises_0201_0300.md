@@ -1,3 +1,38 @@
+## 214. Shortest Palindrome
+```python
+class Solution:
+    def shortestPalindrome(self, s):
+
+        if len(s) in [0, 1]:
+            return s
+
+        def build_nxt(s):
+            """
+            KMP
+            """
+            nxt = [0, 0]
+            j = 0
+            for i in range(1, len(s)):
+                while j > 0 and s[i] != s[j]:
+                    j = nxt[j]
+                if s[i] == s[j]:
+                    j += 1
+                nxt.append(j)
+            return nxt
+
+        q = s + "#" + s[::-1]
+
+        nxt = build_nxt(q)
+
+        prefix = s[nxt[-1]:][::-1]
+
+        return prefix + s
+
+"""
+Runtime: 62%
+"""
+```
+
 ## 263. Ugly Number
 ```python
 class Solution:
