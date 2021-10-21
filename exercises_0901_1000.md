@@ -1,4 +1,31 @@
-## 953. Verifying an Alien Dictionary
+## 941. 68%
+```python
+def solution(arr):
+
+    n = len(arr)
+
+    if n < 3:
+        return False
+
+    ascending = True
+
+    for i in range(n-1):
+        if arr[i+1] == arr[i]:
+            return False
+
+        if ascending:
+            if arr[i+1] < arr[i]:
+                if i == 0:
+                    return False
+                ascending = False
+        else:
+            if arr[i+1] > arr[i]:
+                return False
+
+    return (ascending is False)
+```
+
+## 953. 76%
 ```python
 class Solution:
     def isAlienSorted(words, order):
@@ -28,7 +55,4 @@ class Solution:
                 return False
 
         return True
-"""
-Runtime: 76%
-"""
 ```
