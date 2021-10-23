@@ -68,51 +68,45 @@ def solution(intervals, newInterval):
 
     return res + [[a, b]]
 ```
-## 59. (37%)
+## 59. (76%)
 ```python
 def solution(n):
 
-    grid = [[0 for _ in range(n+2)] for _ in range(n+2)]
+    grid = [[0 for _ in range(n)] for _ in range(n)]
 
-    for i in range(n+2):
-        grid[i][0] = -1
-        grid[i][-1] = -1
+    left = 0
+    right = n-1
+    top = 0
+    bottom = n-1
+    x = 1
 
-    for j in range(n+2):
-        grid[0][j] = -1
-        grid[-1][j] = -1
+    while left <= right and top <= bottom:
 
-    i, j = 1, 1
+        for i in range(left, right+1):
+            grid[top][i] = x
+            x += 1
 
-    grid[1][1] = 1
+        top += 1
 
-    for x in range(2, n**2+1):
+        for i in range(top, bottom+1):
+            grid[i][right] = x
+            x += 1
 
-        # move right if possible
-        if grid[i-1][j] != 0 and grid[i][j+1] == 0:
-            j += 1
+        right -= 1
 
-        # move down if possible
-        elif grid[i][j+1] != 0 and grid[i+1][j] == 0:
-            i += 1
+        for i in range(right, left-1, -1):
+            grid[bottom][i] = x
+            x += 1
 
-        # move left if possible
-        elif grid[i+1][j] != 0 and grid[i][j-1] == 0:
-            j -= 1
+        bottom -= 1
 
-        # move up if possible
-        else:
-            i -= 1
+        for i in range(bottom, top-1, -1):
+            grid[i][left] = x
+            x += 1
 
-        grid[i][j] = x
+        left += 1
 
-    res = [[0 for _ in range(n)] for _ in range(n)]
-
-    for i in range(n):
-        for j in range(n):
-            res[i][j] = grid[i+1][j+1]
-
-    return res
+    return grid
 ```
 
 ## 62. (73%)
