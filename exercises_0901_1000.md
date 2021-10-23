@@ -1,4 +1,4 @@
-## 941. 68%
+## 941. (68%)
 ```python
 def solution(arr):
 
@@ -25,34 +25,65 @@ def solution(arr):
     return (ascending is False)
 ```
 
-## 953. 76%
+## 958. (90%)
 ```python
-class Solution:
-    def isAlienSorted(words, order):
+def solution(root):
+        cur_nodes = [root]
+        vals = [root.val]
 
-        n = len(words)
-        d = dict()
-
-        for i, a in enumerate(order):
-            d[a] = i
-
-        for i in range(n-1):
-            x, y = words[i], words[i+1]
-
-            while x and y:
-                s1 = x[0]
-                s2 = y[0]
-
-                if d[s1] < d[s2]:
-                    break
-                elif d[s1] > d[s2]:
-                    return False
+        while cur_nodes:
+            next_nodes = [] # list to store the nodes in the next level
+            for node in cur_nodes:
+                if node.left:
+                    if vals[-1] == -1:
+                        return False
+                    else:
+                        next_nodes.append(node.left)
+                        vals.append(node.val)
                 else:
-                    x = x[1:]
-                    y = y[1:]
+                    vals.append(-1)
 
-            if x and not y:
-                return False
+                if node.right:
+                    if vals[-1] == -1:
+                        return False
+                    else:
+                        next_nodes.append(node.right)
+                        vals.append(node.val)
+                else:
+                    vals.append(-1)
+
+            cur_nodes = next_nodes
 
         return True
+```
+
+
+## 953. (76%)
+```python
+def solution(words, order):
+    n = len(words)
+    d = dict()
+
+    for i, a in enumerate(order):
+        d[a] = i
+
+    for i in range(n-1):
+        x, y = words[i], words[i+1]
+
+        while x and y:
+            s1 = x[0]
+            s2 = y[0]
+
+            if d[s1] < d[s2]:
+                break
+            elif d[s1] > d[s2]:
+                return False
+            else:
+                x = x[1:]
+                y = y[1:]
+
+        if x and not y:
+            return False
+
+    return True
 ```
