@@ -1,6 +1,6 @@
-## 101. Symmetric Tree
+## 101. (66%)
 ```python
-def isSymmetric(root):
+def solution(root):
     # nodes of the 1st level (root)
     cur_nodes = [root]
     # while there are nodes in the current level
@@ -31,23 +31,12 @@ def isSymmetric(root):
         cur_nodes = next_nodes
     # finish the whole tree, return True
     return True
-
-"""
-Runtime: 36 ms (66%)
-"""
 ```
 
-## 109. Convert Sorted List to Binary Search Tree
+## 109. (30%)
 ```python
-def sortedListToBST(head):
-    """
-    Given a singly linked list head (values are sorted in ascending order),
-    Convert it into a balanced BST
-    Arguments
-        head: linked list node
-    """
+def solution(head):
 
-    # helper function    
     def recursion(vals):
         if vals:
             n = len(vals)
@@ -68,24 +57,12 @@ def sortedListToBST(head):
 
     # recursively build the tree from the middle node
     return recursion(vals)
-
-"""
-Runtime: 384 ms (30%)
-"""
 ```
 
-## 113. Path Sum II
+## 113. (24%)
 ```python
 class Solution:
     def pathSum(self, root, targetSum):
-        """
-        Given a binary tree node, return a list of root-to-leaf paths that sum up to targetSum
-        Arguments:
-            root: the root node of the tree
-            targetSum: the target sum
-        Output:
-            a list of lists. Each list is a path from the root the a leaf
-        """
         self.res = []
         self.recursion(root, [], targetSum)
         return self.res
@@ -101,7 +78,25 @@ class Solution:
             recursion(node.left, history + [node.val], target)
             # go to the right child
             recursion(node.right, history + [node.val], target)
-"""
-Runtime: 64 ms (24%)
-"""
+```
+
+## 139. (55%)
+```python
+def solution(s, wordDict):
+
+    n = len(s)
+
+    wordDict = set(wordDict)
+
+    dp = [0 for _ in range(n+1)]
+
+    dp[0] = True
+
+    for i in range(1, n+1):
+        for j in range(i):
+            dp[i] = (dp[j] and (s[j:i] in wordDict))
+            if dp[i]:
+                break
+
+    return dp[-1]
 ```
