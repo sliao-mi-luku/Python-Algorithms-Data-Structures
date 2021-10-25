@@ -1,5 +1,4 @@
-### 1404.
-40%
+## 1404. (40%)
 ```python
 def numSteps(s):
 
@@ -41,4 +40,32 @@ def numSteps(s):
             s = s[:i] + "1"
 
     return res
+```
+
+## 1415. (45%)
+```python
+def getHappyString(self, n: int, k: int) -> str:
+
+    def get_strings(n):
+
+        happy = ["a", "b", "c"]
+
+        for _ in range(n-1):
+            new_happy = []
+            for i, x in enumerate(happy):
+                new_insert = []
+                for y in ["a", "b", "c"]:
+                    if y != x[-1]:
+                        new_insert.append(x+y)
+                new_happy += new_insert
+            happy = new_happy
+
+        return happy
+
+    happyStrings = get_strings(n)
+
+    if k > len(happyStrings):
+        return ""
+    else:
+        return happyStrings[k-1]
 ```
