@@ -1,17 +1,16 @@
-## 781. (33%)
+## 781. (69%)
 ```python
 def solution(answers):
     d = dict()
-
-    for x in answers:
-        d[x] = d.get(x, 0) + 1
-
     res = 0
+    for x in answers:
+        d[x] = d.get(x, 0)
 
-    for k, v in d.items():
-        res += (k+1)*(v // (k+1))
-        if v % (k+1) != 0:
-            res += (k+1)
+        if d[x] == 0:
+            res += (x+1)
+            d[x] = x
+        else:
+            d[x] -= 1
 
     return res
 ```
