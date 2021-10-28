@@ -15,3 +15,24 @@ def solution(s):
 
     return res
 ```
+
+## 1700. (65%)
+```python
+def countStudents(students, sandwiches):
+
+    while True:
+        if sandwiches[0] not in set(students):
+            return len(students)
+
+        j = 0 #sandwich
+
+        for i, x in enumerate(students):
+            if x == sandwiches[j]:
+                j += 1
+                if j == len(sandwiches):
+                    return 0
+            else:
+                students = students[i+1:] + [x]
+                sandwiches = sandwiches[j:]
+                break
+```
