@@ -168,7 +168,7 @@ def solution(root):
     return recursion(root, [])
 ```
 
-## 145 (72%)
+## 145. (72%)
 ```python
 def solution(root):
 
@@ -182,4 +182,27 @@ def solution(root):
             return traversal
 
     return recursion(root, [])
+```
+
+## 150. (96%)
+```python
+def solution(tokens):
+    cache = []
+
+    for x in tokens:
+        if x in ["+", "-", "*", "/"]:
+            b = cache.pop()
+            a = cache.pop()
+            if x == "+":
+                cache.append(a+b)
+            elif x == "-":
+                cache.append(a-b)
+            elif x == "*":
+                cache.append(a*b)
+            else:
+                cache.append(int(a/b))
+        else:
+            cache.append(int(x))
+
+    return cache[0]
 ```
