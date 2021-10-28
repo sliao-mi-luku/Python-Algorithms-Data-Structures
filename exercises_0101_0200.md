@@ -80,6 +80,32 @@ class Solution:
             recursion(node.right, history + [node.val], target)
 ```
 
+## 114. (85%)
+```python
+def solution(root):
+
+    if not root:
+        return []
+
+    def preorder(node, traversal=[]):
+        if node:
+            traversal.append(node)
+            if node.left:
+                traversal = preorder(node.left, traversal)
+            if node.right:
+                traversal = preorder(node.right, traversal)
+            return traversal
+
+    traversal = preorder(root, [])
+
+    for i in range(len(traversal)-1):
+        traversal[i].left = None
+        traversal[i].right = traversal[i+1]
+
+    traversal[-1].left = None
+    traversal[-1].right = None
+```
+
 ## 139. (55%)
 ```python
 def solution(s, wordDict):
