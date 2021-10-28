@@ -31,6 +31,28 @@ def solution(l1, l2):
     return encode(v1 + v2)
 ```
 
+## 20. (75%)
+```python
+def solution(self, s: str) -> bool:
+    stack = []
+
+    for x in s:
+        if x in ["(", "[", "{"]:
+            stack.append(x)
+
+        else:
+            if not stack:
+                return False
+
+            y = stack.pop()
+
+            if y+x not in ["()", "[]", "{}"]:
+                return False
+
+    return not stack
+
+```
+
 ## 57. (58%)
 ```python
 def solution(intervals, newInterval):
