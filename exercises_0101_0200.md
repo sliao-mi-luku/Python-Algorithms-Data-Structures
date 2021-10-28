@@ -100,3 +100,19 @@ def solution(s, wordDict):
 
     return dp[-1]
 ```
+
+## 144. (89%)
+```python
+def solution(root):
+
+    def recursion(node, traversal):
+        if node:
+            traversal.append(node.val)
+            if node.left:
+                traversal = recursion(node.left, traversal)
+            if node.right:
+                traversal = recursion(node.right, traversal)
+            return traversal
+
+    return recursion(root, [])
+```
