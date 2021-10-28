@@ -33,7 +33,7 @@ def solution(l1, l2):
 
 ## 20. (75%)
 ```python
-def solution(self, s: str) -> bool:
+def solution(s):
     stack = []
 
     for x in s:
@@ -142,6 +142,22 @@ def solution(m, n):
             dp[i][j] = dp[i-1][j] + dp[i][j-1]
 
     return dp[-1][-1]
+```
+
+## 94. (89%)
+```python
+def solution(root):
+
+    def recursion(node, traversal=[]):
+        if node:
+            if node.left:
+                traversal = recursion(node.left, traversal)
+            traversal.append(node.val)
+            if node.right:
+                traversal = recursion(node.right, traversal)
+            return traversal
+
+    return recursion(root, [])
 ```
 
 ## 99. (82%)
