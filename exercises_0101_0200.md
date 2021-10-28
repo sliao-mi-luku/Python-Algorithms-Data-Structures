@@ -116,3 +116,19 @@ def solution(root):
 
     return recursion(root, [])
 ```
+
+## 145 (72%)
+```python
+def solution(root):
+
+    def recursion(node, traversal):
+        if node:
+            if node.left:
+                traversal = recursion(node.left, traversal)
+            if node.right:
+                traversal = recursion(node.right, traversal)
+            traversal.append(node.val)
+            return traversal
+
+    return recursion(root, [])
+```
