@@ -127,6 +127,31 @@ def solution(s, wordDict):
     return dp[-1]
 ```
 
+## 143. (79%)
+```python
+def solution(head):
+    forward = []
+    cur = head
+
+    while cur:
+        forward.append(cur)
+        cur = cur.next
+
+    i, j = 0, len(forward)-1
+
+    while i < j:
+        forward[i].next = forward[j]
+        if i+1 == j:
+            forward[j].next = None
+        else:
+            forward[j].next = forward[i+1]
+        i += 1
+        j -= 1
+
+        if i == j:
+            forward[j].next = None
+```
+
 ## 144. (89%)
 ```python
 def solution(root):
