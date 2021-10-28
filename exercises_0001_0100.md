@@ -144,6 +144,25 @@ def solution(m, n):
     return dp[-1][-1]
 ```
 
+## 71. (98%)
+```python
+def solution(path):
+    history = []
+    path = path.split('/')
+
+    for x in path:
+        if not x or x == ".":
+            continue
+
+        if x == "..":
+            if len(history) >= 1:
+                history.pop()
+        else:
+            history.append(x)
+
+    return "/" + "/".join(history)
+```
+
 ## 94. (89%)
 ```python
 def solution(root):
