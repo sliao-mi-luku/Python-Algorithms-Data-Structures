@@ -206,3 +206,27 @@ def solution(tokens):
 
     return cache[0]
 ```
+
+## 173. (84%)
+```python
+class solution:
+    def __init__(self, root):
+        self.traversal = self.inorder(root, [])
+        self.i = -1
+
+    def next(self):
+        self.i += 1
+        return self.traversal[self.i]
+
+    def hasNext(self):
+        return self.i < len(self.traversal)-1
+
+    def inorder(self, node, traversal):
+        if node:
+            if node.left:
+                traversal = self.inorder(node.left, traversal)
+            traversal.append(node.val)
+            if node.right:
+                traversal = self.inorder(node.right, traversal)
+            return traversal
+```
