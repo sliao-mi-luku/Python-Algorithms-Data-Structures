@@ -1,92 +1,116 @@
-## 214. Shortest Palindrome
+## 214. (62%)
 ```python
-class Solution:
-    def shortestPalindrome(self, s):
+def solution(s):
 
-        if len(s) in [0, 1]:
-            return s
+    if len(s) in [0, 1]:
+        return s
 
-        def build_nxt(s):
-            """
-            KMP
-            """
-            nxt = [0, 0]
-            j = 0
-            for i in range(1, len(s)):
-                while j > 0 and s[i] != s[j]:
-                    j = nxt[j]
-                if s[i] == s[j]:
-                    j += 1
-                nxt.append(j)
-            return nxt
-
-        q = s + "#" + s[::-1]
-
-        nxt = build_nxt(q)
-
-        prefix = s[nxt[-1]:][::-1]
-
-        return prefix + s
-
-"""
-Runtime: 62%
-"""
-```
-
-## 263. Ugly Number
-```python
-class Solution:
-    def isUgly(self, n):
-
-        if n <= 0:
-            return False
-
-        for x in [2, 3, 5]:
-            while n % x == 0:
-                n /= x
-
-        return (n == 1)
-
-"""
-Runtime: 90%
-"""
-```
-
-## 264. Ugly Number II
-```python
-class Solution:
-    def nthUglyNumber(n):
-
-        if n == 1:
-            return 1
-
-        a = [2]
-        b = [3]
-        c = [5]
-
-        i, j, k = 0, 0, 0
-
-        res = 1
-
-        while n != 1:
-            if a[i] == res:
-                i += 1
-            if b[j] == res:
+    def build_nxt(s):
+        """
+        KMP
+        """
+        nxt = [0, 0]
+        j = 0
+        for i in range(1, len(s)):
+            while j > 0 and s[i] != s[j]:
+                j = nxt[j]
+            if s[i] == s[j]:
                 j += 1
-            if c[k] == res:
-                k += 1
+            nxt.append(j)
+        return nxt
 
-            res = min(a[i], b[j], c[k])
+    q = s + "#" + s[::-1]
 
-            a.append(res*2)
-            b.append(res*3)
-            c.append(res*2)
+    nxt = build_nxt(q)
 
-            n -= 1
+    prefix = s[nxt[-1]:][::-1]
 
-        return res
+    return prefix + s
+```
 
-"""
-Runtime: 66%
-"""
+## 227. (54%)
+```python
+def solution(s):
+    stack = []
+    cur = ""
+    for x in s:
+        if x == " ":
+            continue
+        elif x in ["+", "-", "*", "/"]:
+            stack.append(int(cur))
+            stack.append(x)
+            cur = ""
+        else:
+            cur += x
+    if cur:
+        stack.append(int(cur))
+
+    new_stack = []
+    i = 0
+
+    while i < len(stack):
+        if stack[i] == "+":
+            i += 1
+            continue
+        elif stack[i] == "-":
+            new_stack.append(-stack[i+1])
+            i += 2
+        elif stack[i] == "*":
+            new_stack.append(new_stack.pop()*stack[i+1])
+            i += 2
+        elif stack[i] == "/":
+            new_stack.append(int(new_stack.pop()/stack[i+1]))
+            i += 2
+        else:
+            new_stack.append(stack[i])
+            i += 1
+
+    return sum(new_stack)            
+```
+
+## 263. (90%)
+```python
+def solution(n):
+    if n <= 0:
+        return False
+
+    for x in [2, 3, 5]:
+        while n % x == 0:
+            n /= x
+
+    return (n == 1)
+```
+
+## 264. (66%)
+```python
+def solution(n):
+
+    if n == 1:
+        return 1
+
+    a = [2]
+    b = [3]
+    c = [5]
+
+    i, j, k = 0, 0, 0
+
+    res = 1
+
+    while n != 1:
+        if a[i] == res:
+            i += 1
+        if b[j] == res:
+            j += 1
+        if c[k] == res:
+            k += 1
+
+        res = min(a[i], b[j], c[k])
+
+        a.append(res*2)
+        b.append(res*3)
+        c.append(res*2)
+
+        n -= 1
+
+    return res
 ```
