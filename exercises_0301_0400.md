@@ -31,3 +31,21 @@ def solution(s):
 
     return "".join(res)
 ```
+
+## 331. (95%)
+```python
+def solution(preorder):
+
+    preorder = preorder.split(",")
+
+    to_fill = 1
+    for x in preorder:
+        if to_fill <= 0:
+            return False
+        if x == "#":
+            to_fill -= 1
+        else:
+            to_fill += 1
+
+    return to_fill == 0
+```
