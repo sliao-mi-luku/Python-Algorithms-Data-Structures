@@ -26,6 +26,21 @@ def solution(asteroids):
     return stack
 ```
 
+## 739. (55%)
+```python
+def solution(temperatures):
+    stack = []
+    res = [0 for _ in range(len(temperatures))]
+
+    for i in range(len(temperatures)):
+        x = temperatures[i]
+        while stack and stack[-1][1] < x:
+            res[stack[-1][0]] = i-stack[-1][0]
+            stack.pop()
+        stack.append((i, x))
+    return res
+```
+
 ## 781. (69%)
 ```python
 def solution(answers):
