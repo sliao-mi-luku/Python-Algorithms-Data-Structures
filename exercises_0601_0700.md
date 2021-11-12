@@ -39,6 +39,24 @@ def solution(n, logs):
 
     return res    
 ```
+## 654. (81%)
+```python
+class Solution:
+    def solution(self, nums):
+
+        if not nums:
+            return None
+
+        max_val = max(nums)
+        max_index = nums.index(max_val)
+        
+        root = TreeNode(max_val)
+        root.left = self.solution(nums[:max_index])
+        root.right = self.solution(nums[max_index+1:])
+
+        return root
+```
+
 
 ## 695. (55%)
 ```python
