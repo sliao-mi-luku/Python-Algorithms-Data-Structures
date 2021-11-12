@@ -114,3 +114,26 @@ def solution(words):
 
     return res
 ```
+
+## 496. (99%)
+```python
+def solution(nums1, nums2):
+    stack = []
+    ans = dict()
+
+    for x in nums2:
+        if not stack:
+            stack.append(x)
+            continue
+        if stack and stack[-1] > x:
+            stack.append(x)
+            continue
+        while stack and stack[-1] < x:
+            ans[stack.pop()] = x
+        stack.append(x)
+
+    res = []
+    for x in nums1:
+        res.append(ans.get(x, -1))
+    return res
+```
