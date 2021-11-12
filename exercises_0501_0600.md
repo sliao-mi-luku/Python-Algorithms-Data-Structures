@@ -15,6 +15,29 @@ def solution(nums):
     return res        
 ```
 
+## 581. (95%)
+```python
+def solution(nums):
+    n = len(nums)
+    if n == 1:
+        return 0
+
+    sorted_nums = list(nums)
+    sorted_nums.sort()
+
+    for i in range(n):
+        if nums[i] != sorted_nums[i]:
+            break
+        if i == n-1:
+            return 0
+
+    for j in range(n-1, -1, -1):
+        if nums[j] != sorted_nums[j]:
+            break
+
+    return j-i+1
+```
+
 ## 594. (77%)
 ```python
 def solution(nums):
