@@ -49,7 +49,7 @@ class Solution:
 
         max_val = max(nums)
         max_index = nums.index(max_val)
-        
+
         root = TreeNode(max_val)
         root.left = self.solution(nums[:max_index])
         root.right = self.solution(nums[max_index+1:])
@@ -57,6 +57,36 @@ class Solution:
         return root
 ```
 
+## 678. (97%)
+```python
+def solution(s):
+    n = len(s)
+
+    if s[-1] == "(" or s[0] == ")":
+        return False
+
+    stack_star = []
+    stack_left = []
+
+    for i, x in enumerate(s):
+        if x == "*":
+            stack_star.append(i)
+        elif x == "(":
+            stack_left.append(i)
+        else: # ")"
+            if not stack_star and not stack_left:
+                return False
+            if stack_left:
+                stack_left.pop()
+            else:
+                stack_star.pop()
+
+    while stack_left and stack_star:
+        if stack_left.pop() >  stack_star.pop():
+            return False
+
+    return not stack_left
+```
 
 ## 695. (55%)
 ```python
