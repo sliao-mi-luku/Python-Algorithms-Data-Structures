@@ -97,6 +97,36 @@ def solution(arr):
     return (ascending is False)
 ```
 
+## 946. (69%)
+```python
+def solution(pushed, popped):
+    d = dict()
+
+    for i, x in enumerate(pushed):
+        d[x] = i
+
+    visited = [False for _ in range(len(pushed))]
+    prev_i = None
+
+    for x in popped:
+        cur_i = d[x]
+        visited[cur_i] = True
+
+        if not prev_i:
+            prev_i = cur_i
+            continue
+
+        if cur_i < prev_i:
+            for k in range(cur_i, prev_i):
+                if not visited[k]:
+                    return False
+
+        visited[cur_i] = True
+        prev_i = cur_i
+
+    return True
+```
+
 ## 958. (90%)
 ```python
 def solution(root):
