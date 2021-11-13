@@ -41,6 +41,25 @@ def solution(temperatures):
     return res
 ```
 
+## 769. (64%)
+```python
+def solution(arr):
+    n = len(arr)
+    d = dict()
+    for i in range(n):
+        d[i] = i
+    for i, x in enumerate(arr):
+        if i == x:
+            continue
+        x_max = max(i, x)
+        x_min = min(i, x)
+        for j in range(x_min+1, x_max+1):
+            d[j] = d[x_min]
+
+    return len(set(d.values()))
+```
+
+
 ## 781. (69%)
 ```python
 def solution(answers):
