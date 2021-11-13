@@ -54,6 +54,21 @@ def solution(arr):
     return res % (10**9 + 7)
 ```
 
+## 921. (69%)
+```python
+def solution(s):
+    score = 0
+    res = 0
+    for x in s:
+        if x == "(":
+            score += 1
+        else:
+            score -= 1
+        if score == -1:
+            res += 1
+            score = 0
+    return res + score
+```
 
 ## 941. (68%)
 ```python
