@@ -1,3 +1,21 @@
+## 901. (68%)
+```python
+class Solution:
+    def __init__(self):
+        self.array = [10**5+1]
+        self.res = [1]
+
+    def solution(self, price):
+        i = len(self.array)-1
+        res = 1
+        while self.array[i] <= price:
+            res += self.res[i]
+            i -= self.res[i]
+        self.res.append(res)
+        self.array.append(price)
+        return res
+```
+
 ## 907. (32%)
 ```python
 def solution(arr):
@@ -5,7 +23,7 @@ def solution(arr):
 
     left = [1 for _ in range(n)]
     right = [1 for _ in range(n)]
-            
+
     # right
     stack = []
     for j, y in enumerate(arr):
