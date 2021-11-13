@@ -1,3 +1,42 @@
+## 907. (32%)
+```python
+def solution(arr):
+    n = len(arr)
+
+    left = [1 for _ in range(n)]
+    right = [1 for _ in range(n)]
+            
+    # right
+    stack = []
+    for j, y in enumerate(arr):
+        while stack and stack[-1][1] >= y:
+            i, x = stack.pop()
+            right[i] = j-i
+        stack.append((j, y))
+    while stack:
+        i, x = stack.pop()
+        right[i] = n-i
+
+    # left
+    stack = []
+    for j in range(n-1, -1, -1):
+        y = arr[j]
+        while stack and stack[-1][1] > y:
+            i, x = stack.pop()
+            left[i] = abs(j-i)
+        stack.append((j, y))
+    while stack:
+        i, x = stack.pop()
+        left[i] = i+1
+
+    res = 0
+    for i, x in enumerate(arr):
+        res += left[i]*right[i]*x
+
+    return res % (10**9 + 7)
+```
+
+
 ## 941. (68%)
 ```python
 def solution(arr):
