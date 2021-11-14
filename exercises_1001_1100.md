@@ -56,3 +56,27 @@ def solution(n):
 
     return stack[0]
 ```
+
+## 1008. (71%)
+```python
+def solution(preorder):
+
+    if not preorder:
+        return None
+
+    val = preorder[0]
+    n = len(preorder)
+    root = TreeNode(val)
+
+    i = 1
+    while i < n and preorder[i] < val:
+        i += 1
+
+
+    if i != 1:
+        root.left = solution(preorder[1:i])
+    if i != n:
+        root.right = solution(preorder[i:])
+
+    return root
+```
