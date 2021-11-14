@@ -100,3 +100,31 @@ def solution(head):
 
     return res
 ```
+
+## 1081. (93%)
+```python
+def solution(s):
+    d = dict()
+    placed = dict()
+
+    for x in s:
+        d[x] = d.get(x, 0) + 1
+
+    for x in d.keys():
+        placed[x] = False
+
+    stack = []
+    for x in s:
+        d[x] -= 1
+
+        if not placed[x]:            
+            while stack and (ord(stack[-1]) > ord(x) and d[stack[-1]] > 0):
+                y = stack.pop()
+                placed[y] = False
+
+            placed[x] = True
+            stack.append(x)
+
+
+    return "".join(stack)
+```
