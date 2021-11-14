@@ -1,3 +1,20 @@
+## 1003 (39%)
+```python
+def solution(s):
+    n = len(s)
+    if n < 3:
+        return False
+
+    stack = []
+    for x in s[::-1]:
+        stack.append(x)
+        while (len(stack) >= 3) and stack[-1] == "a" and stack[-2] == "b" and stack[-3] == "c":
+            stack.pop()
+            stack.pop()
+            stack.pop()
+    return not stack
+```
+
 ## 1006 (41%)
 ```python
 def solution(n):
