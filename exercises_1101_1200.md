@@ -16,3 +16,20 @@ def solution(text1, text2):
 
     return dp[n][m]
 ```
+
+## 1190 (71%)
+```python
+def solution(s):
+    stack = []
+    for x in s:
+        if x == ")":
+            word = []
+            while stack[-1] != "(":
+                word.append(stack.pop())
+            stack.pop()
+            stack += word
+        else:
+            stack.append(x)
+
+    return "".join(stack)
+```
