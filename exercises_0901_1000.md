@@ -127,6 +127,39 @@ def solution(pushed, popped):
     return True
 ```
 
+
+
+
+## 953. (76%)
+```python
+def solution(words, order):
+    n = len(words)
+    d = dict()
+
+    for i, a in enumerate(order):
+        d[a] = i
+
+    for i in range(n-1):
+        x, y = words[i], words[i+1]
+
+        while x and y:
+            s1 = x[0]
+            s2 = y[0]
+
+            if d[s1] < d[s2]:
+                break
+            elif d[s1] > d[s2]:
+                return False
+            else:
+                x = x[1:]
+                y = y[1:]
+
+        if x and not y:
+            return False
+
+    return True
+```
+
 ## 958. (90%)
 ```python
 def solution(root):
@@ -159,33 +192,17 @@ def solution(root):
         return True
 ```
 
-
-## 953. (76%)
+## 962. (90%)
 ```python
-def solution(words, order):
-    n = len(words)
-    d = dict()
-
-    for i, a in enumerate(order):
-        d[a] = i
-
-    for i in range(n-1):
-        x, y = words[i], words[i+1]
-
-        while x and y:
-            s1 = x[0]
-            s2 = y[0]
-
-            if d[s1] < d[s2]:
-                break
-            elif d[s1] > d[s2]:
-                return False
-            else:
-                x = x[1:]
-                y = y[1:]
-
-        if x and not y:
-            return False
-
-    return True
+def solution(nums):
+    stack = []
+    res = 0
+    for i, x in enumerate(nums):
+        if not stack or x < stack[-1][1]:
+            stack.append((i, x))
+    for i in range(len(nums)-1, -1, -1):
+        while stack and stack[-1][1] <= nums[i]:
+            j, _ = stack.pop()
+            res = max(res, i-j)
+    return res
 ```
