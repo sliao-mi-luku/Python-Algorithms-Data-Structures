@@ -80,3 +80,23 @@ def solution(preorder):
 
     return root
 ```
+
+## 1019. (91%)
+```python
+def solution(head):
+    res = []
+    stack = []
+    cur = head
+    i = -1
+
+    while cur:
+        i += 1
+        res.append(0)
+        while stack and stack[-1][1] < cur.val:
+            j, _ = stack.pop()
+            res[j] = cur.val
+        stack.append((i, cur.val))
+        cur = cur.next
+
+    return res
+```
