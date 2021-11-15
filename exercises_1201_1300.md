@@ -53,6 +53,32 @@ def solution(s, k):
     return res
 ```
 
+## 1249. (86%)
+```python
+def solution(s):
+    score = 0
+    stack = []
+    left = []
+    i = -1
+    for x in s:
+        i += 1
+        stack.append(x)
+        if x == "(":
+            score += 1
+            left.append(i)
+        elif x == ")":
+            score -= 1
+        if score == -1:
+            score = 0
+            stack.pop()
+            i -= 1
+
+    for _ in range(score):
+        stack.pop(left.pop())
+
+    return "".join(stack)
+```
+
 ## 1254. (55%)
 ```python
 def solution(self, grid):
