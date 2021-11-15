@@ -35,6 +35,24 @@ def solution(n, a, b, c):
     return left
 ```
 
+## 1209. (94%)
+```python
+def solution(s, k):
+    stack = [["#", 0]]
+    for x in s:
+        if x == stack[-1][0]:
+            stack[-1][1] += 1
+            if stack[-1][1] == k:
+                stack.pop()
+        else:
+            stack.append([x, 1])
+
+    res = ""
+    for (x, a) in stack[1:]:
+        res += a*x
+    return res
+```
+
 ## 1254. (55%)
 ```python
 def solution(self, grid):
