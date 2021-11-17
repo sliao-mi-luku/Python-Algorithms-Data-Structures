@@ -106,6 +106,19 @@ def solution(root):
     traversal[-1].right = None
 ```
 
+## 121. (31%)
+```python
+def solution(prices):
+    res = 0
+    min_cost = float('inf')
+
+    for i in range(len(prices)):
+        res = max(res, prices[i]-min_cost)
+        min_cost = min(min_cost, prices[i])
+
+    return res
+```
+
 ## 139. (55%)
 ```python
 def solution(s, wordDict):
