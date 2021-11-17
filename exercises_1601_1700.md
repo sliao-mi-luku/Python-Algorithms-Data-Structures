@@ -16,6 +16,23 @@ def solution(s):
     return res
 ```
 
+## 1673. (46%)
+```python
+def solution(nums, k):
+    n = len(nums)
+    stack = []
+    n_futures = n
+
+    for i, x in enumerate(nums):
+        n_futures -= 1
+        while stack and (len(stack) + n_futures >= k) and (x < stack[-1]):
+            stack.pop()
+        if len(stack) < k:
+            stack.append(x)
+
+    return stack
+```
+
 ## 1700. (65%)
 ```python
 def countStudents(students, sandwiches):
