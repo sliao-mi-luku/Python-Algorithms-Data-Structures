@@ -61,7 +61,7 @@ def solution(arr):
 
 ## 746. (93%)
 ```python
-def minCostClimbingStairs(cost):
+def solution(cost):
     n = len(cost)
 
     dp = [0 for _ in range(n)]
