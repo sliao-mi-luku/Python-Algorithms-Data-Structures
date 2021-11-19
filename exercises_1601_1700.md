@@ -16,6 +16,20 @@ def solution(s):
     return res
 ```
 
+## 1653. (84%)
+```python
+def solution(s):
+    res = 0
+    b_counts = 0
+    for x in s:
+        if x == "a":
+            res = min(b_counts, res + 1)
+        else:
+            b_counts += 1
+
+    return res
+```
+
 ## 1673. (46%)
 ```python
 def solution(nums, k):
