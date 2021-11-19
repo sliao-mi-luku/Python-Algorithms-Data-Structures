@@ -101,6 +101,23 @@ def solution(head):
     return res
 ```
 
+## 1021. (82%)
+```python
+def solution(s):
+    score = 0
+    res = ""
+    for x in s:
+        if x == "(":
+            score += 1
+            if score != 1:
+                res += x
+        else: # ")"
+            score -= 1
+            if score != 0:
+                res += x
+    return res
+```
+
 ## 1081. (93%)
 ```python
 def solution(s):
