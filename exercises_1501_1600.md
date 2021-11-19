@@ -53,6 +53,28 @@ def solution(s):
     return res
 ```
 
+## 1574 (88%)
+```python
+def solution(arr):
+    n = len(arr)
+    j = n-1
+    while j != 0 and arr[j-1] <= arr[j]:
+        j -= 1
+    # arr[j], ..., arr[n-1] are non-decreasing
+    if j == 0:
+        return 0
+
+    res = j
+    for i in range(n):
+        while j != n and arr[i] > arr[j]:
+            j += 1
+        res = min(res, j-i-1)
+        if arr[i+1] < arr[i]:
+            break
+
+    return res
+```
+
 ## 1598 (87%)
 ```python
 def solution(logs):
