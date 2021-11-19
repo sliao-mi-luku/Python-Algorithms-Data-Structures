@@ -118,6 +118,18 @@ def solution(s):
     return res
 ```
 
+## 1047 (97%)
+```python
+def solution(s):
+    stack = []
+    for x in s:
+        if stack and stack[-1] == x:
+            stack.pop()
+            continue
+        stack.append(x)
+    return "".join(stack)
+```
+
 ## 1081. (93%)
 ```python
 def solution(s):
