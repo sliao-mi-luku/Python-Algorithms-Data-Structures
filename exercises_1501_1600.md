@@ -25,6 +25,34 @@ def solution(mat):
     return res
 ```
 
+## 1541. (89%)
+```python
+def solution(s):
+    res = 0
+
+    s = s.replace("))", ">")
+
+    for x in s:
+        if x == ")":
+            res += 1
+
+    s = s.replace(")", ">")
+
+    score = 0
+    for x in s:
+        if x == "(":
+            score += 1
+        else:
+            score -= 1
+            if score == -1:
+                res += 1
+                score = 0
+
+    res += 2*score
+
+    return res
+```
+
 ## 1598 (87%)
 ```python
 def solution(logs):
