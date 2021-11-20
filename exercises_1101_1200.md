@@ -1,4 +1,25 @@
-## 1143 (61%)
+## 1130. (82%)
+```python
+def solution(arr):
+    res = 0
+    while len(arr) != 1:
+        i = arr.index(min(arr))
+        if i == 0:
+            res += arr[0]*arr[1]
+            arr.pop(0)
+        elif i == len(arr)-1:
+            res += arr[-2]*arr[-1]
+            arr.pop()
+        else:
+            if arr[i-1] >= arr[i+1]:
+                res += arr[i]*arr[i+1]
+            else:
+                res += arr[i]*arr[i-1]
+            arr.pop(i)
+    return res
+```
+
+## 1143. (61%)
 ```python
 def solution(text1, text2):
 
@@ -17,7 +38,7 @@ def solution(text1, text2):
     return dp[n][m]
 ```
 
-## 1190 (71%)
+## 1190. (71%)
 ```python
 def solution(s):
     stack = []
