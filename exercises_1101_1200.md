@@ -1,3 +1,18 @@
+## 1111. (75%)
+```python
+def solution(seq):
+    res = []
+    cur = 0
+    for x in seq:
+        if x == "(":
+            res.append(cur%2)
+            cur += 1
+        else:
+            cur += 1
+            res.append(cur%2)
+    return res
+```
+
 ## 1124. (91%)
 ```python
 def solution(hours):
