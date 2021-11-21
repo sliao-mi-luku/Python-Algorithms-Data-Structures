@@ -68,6 +68,24 @@ def solution(s):
     return sum(new_stack)            
 ```
 
+## 234. (60%)
+```python
+def solution(head):
+    arr = []
+    cur = head
+    while cur:
+        arr.append(cur.val)
+        cur = cur.next
+    i = 0
+    j = len(arr)-1
+    while i < j:
+        if arr[i] != arr[j]:
+            return False
+        i += 1
+        j -= 1
+    return True
+```
+
 ## 263. (90%)
 ```python
 def solution(n):
