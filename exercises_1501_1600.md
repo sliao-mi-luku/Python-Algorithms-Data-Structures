@@ -53,6 +53,19 @@ def solution(s):
     return res
 ```
 
+## 1544. (74%)
+```python
+def solution(s):
+    stack = []
+    y = abs(ord("a") - ord("A"))
+    for x in s:
+        if stack and abs(ord(stack[-1])-ord(x)) == y:
+            stack.pop()
+        else:
+            stack.append(x)
+    return "".join(stack)
+```
+
 ## 1574 (88%)
 ```python
 def solution(arr):
