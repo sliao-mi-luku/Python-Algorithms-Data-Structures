@@ -1,3 +1,26 @@
+## 1124. (91%)
+```python
+def solution(hours):
+    n = len(hours)
+    for i in range(n):
+        if hours[i] > 8:
+            hours[i] = 1
+        else:
+            hours[i] = -1
+    res = 0
+    cur = 0
+    d = dict()
+    for i, x in enumerate(hours):
+        cur += x
+        if cur >= 1:
+            res = max(res, i+1)
+        elif cur-1 in d:
+            res = max(res, i-d[cur-1])
+        if cur not in d:
+            d[cur] = i
+    return res
+```
+
 ## 1130. (82%)
 ```python
 def solution(arr):
