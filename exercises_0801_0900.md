@@ -75,3 +75,24 @@ def solution(s, k):
 
     return d[k]
 ```
+
+## 897. (69%)
+```python
+def solution(root):
+    def inorder(node, traversal):
+        if node:
+            if node.left:
+                traversal = inorder(node.left, traversal)
+            traversal.append(node.val)
+            if node.right:
+                traversal = inorder(node.right, traversal)
+            return traversal
+
+    traversal = inorder(root, [])
+    root = TreeNode(traversal[0])
+    cur = root
+    for val in traversal[1:]:
+        cur.right = TreeNode(val)
+        cur = cur.right
+    return root
+```
