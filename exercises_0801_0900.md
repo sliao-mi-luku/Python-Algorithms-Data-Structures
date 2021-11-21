@@ -1,3 +1,27 @@
+## 844. (66%)
+```python
+def solution(s, t):
+    A = process(s)
+    B = process(t)
+    n = len(A)
+    if len(B) != n:
+        return False
+    for i in range(n):
+        if A[i] != B[i]:
+            return False
+    return True
+
+def process(s):
+    arr = []
+    for x in s:
+        if x == "#":
+            if arr:
+                arr.pop()
+        else:
+            arr.append(x)
+    return arr
+```
+
 ## 856. (86%)
 ```python
 def solution(s):
