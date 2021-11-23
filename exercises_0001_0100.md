@@ -89,6 +89,27 @@ def solution(s):
     return not stack
 ```
 
+## 22. (17%)
+```python
+def solution(n):
+    if n == 1:
+        return ["()"]
+
+    s = set(["()"])
+    
+    for i in range(2, n+1):
+        new = set()
+        for x in s:
+            for i in range(len(x)):
+                if x[i] == "(":
+                    new.add(x[:i+1] + "()" + x[i+1:])
+            new.add("()"+x)
+
+        s = new
+
+    return list(s)
+```
+
 ## 53. (40%)
 ```python
 def solution(nums):
