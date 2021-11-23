@@ -50,6 +50,22 @@ def solution(preorder):
     return to_fill == 0
 ```
 
+## 338. (82%)
+```python
+def solution(num):
+    if num == 0:
+        return [0]
+    if num == 1:
+        return [0, 1]
+    res = [0, 1]
+    for x in range(2, num+1):
+        if x % 2 == 0:
+            res.append(res[x//2])
+        else:
+            res.append(res[x//2]+1)
+    return res
+```
+
 ## 388. (60%)
 ```python
 def solution(input):
