@@ -123,6 +123,23 @@ def solution(numRows):
     return res
 ```
 
+## 119. (67%)
+```python
+def solution(rowIndex):
+    if rowIndex == 0:
+        return [1]
+    if rowIndex == 1:
+        return [1, 1]
+    prev_row = [1, 1]
+    for i in range(2, rowIndex+1):
+        cur_row = [1]
+        for j in range(len(prev_row)-1):
+            cur_row.append(prev_row[j]+prev_row[j+1])
+        cur_row.append(1)
+        prev_row = list(cur_row)
+    return cur_row
+```
+
 ## 121. (31%)
 ```python
 def solution(prices):
