@@ -35,22 +35,27 @@ def solution(l1, l2):
 ```python
 def solution(s):
     stack = []
-
     for x in s:
         if x in ["(", "[", "{"]:
             stack.append(x)
-
         else:
             if not stack:
                 return False
-
             y = stack.pop()
-
             if y+x not in ["()", "[]", "{}"]:
                 return False
-
     return not stack
+```
 
+## 53. (40%)
+```python
+def solution(nums):
+    res = nums[0]
+    cur = nums[0]
+    for x in nums[1:]:
+        cur = max(cur+x, x)
+        res = max(res, cur)
+    return res
 ```
 
 ## 57. (58%)
