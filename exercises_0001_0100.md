@@ -96,7 +96,7 @@ def solution(n):
         return ["()"]
 
     s = set(["()"])
-    
+
     for i in range(2, n+1):
         new = set()
         for x in s:
@@ -108,6 +108,23 @@ def solution(n):
         s = new
 
     return list(s)
+```
+
+## 45. (52%)
+```python
+def jump(nums):
+    n = len(nums)
+    last_idx = 0
+    cur_idx = 0
+    res = 0
+    for i in range(n-1):
+        cur_idx = max(cur_idx, i+nums[i])
+        if i == last_idx:
+            res += 1
+            last_idx = cur_idx
+            if cur_idx > n-1:
+                break
+    return res
 ```
 
 ## 53. (40%)
