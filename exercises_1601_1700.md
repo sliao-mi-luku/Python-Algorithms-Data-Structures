@@ -16,6 +16,22 @@ def solution(s):
     return res
 ```
 
+## 1646. (8%)
+```python
+def solution(n):
+    if n <= 1:
+        return n
+    dp = [0, 1] + [0 for _ in range(n+1-2)]
+    for i in range(2, n+1):
+        if i % 2 == 0:
+            j = i//2
+            dp[i] = dp[j]
+        else:
+            j = (i-1)//2
+            dp[i] = dp[j] + dp[j+1]
+    return max(dp)
+```
+
 ## 1653. (84%)
 ```python
 def solution(s):
