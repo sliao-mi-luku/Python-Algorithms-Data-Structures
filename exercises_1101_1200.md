@@ -57,6 +57,15 @@ def solution(arr):
     return res
 ```
 
+## 1137. (51%)
+```python
+def solution(n):
+    t = [0, 1, 1]
+    for i in range(3, n+1):
+        t.append(t[-1]+t[-2]+t[-3])
+    return t[n]
+```
+
 ## 1143. (61%)
 ```python
 def solution(text1, text2):
