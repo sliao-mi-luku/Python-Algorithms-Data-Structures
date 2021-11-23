@@ -69,3 +69,19 @@ def getHappyString(self, n: int, k: int) -> str:
     else:
         return happyStrings[k-1]
 ```
+
+## 1441. (46%)
+```python
+def solution(target, n):
+   i = 0 # index of target
+   j = 1 # actual integer
+   res = []
+   for i in range(len(target)):
+       x = target[i]
+       while j < x:
+           res.extend(["Push", "Pop"])
+           j += 1
+       res.append("Push")
+       j += 1
+   return res
+```
