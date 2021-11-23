@@ -106,6 +106,23 @@ def solution(root):
     traversal[-1].right = None
 ```
 
+## 118. (20%)
+```python
+def solution(numRows):
+    if numRows == 1:
+        return [[1]]
+    if numRows == 2:
+        return [[1], [1, 1]]
+    res = [[1], [1, 1]]
+    for i in range(3, numRows+1):
+        new_row = [1]
+        for j in range(i-2):
+            new_row.append(res[-1][j]+res[-1][j+1])
+        new_row.append(1)
+        res.append(new_row)
+    return res
+```
+
 ## 121. (31%)
 ```python
 def solution(prices):
