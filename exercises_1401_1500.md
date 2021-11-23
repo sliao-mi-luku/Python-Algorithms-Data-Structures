@@ -85,3 +85,15 @@ def solution(target, n):
        j += 1
    return res
 ```
+
+## 1475. (30%)
+```python
+def solution(prices):
+    stack = []
+    for i in range(len(prices)):
+        x = prices[i]
+        while stack and prices[stack[-1]] >= x:
+            prices[stack.pop()] -= x
+        stack.append(i)
+    return prices
+```
