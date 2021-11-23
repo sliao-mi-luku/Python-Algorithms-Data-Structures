@@ -31,6 +31,48 @@ def solution(l1, l2):
     return encode(v1 + v2)
 ```
 
+## 5. (50%)
+```python
+def solution(s):
+    n = len(s)
+    if n == 1:
+        return s
+    if n == 2:
+        return s if s[0]==s[1] else s[0]
+
+    res = s[0]
+    for i in range(n-1):
+        if s[i] == s[i+1]:
+            res = s[i:i+2]
+
+    # odd palidrome
+    for i in range(1, n-1):
+        left = i-1
+        right = i+1
+        while s[left] == s[right]:
+            if (right-left+1) > len(res):
+                res = s[left:right+1]
+            left -= 1
+            right += 1
+            if left < 0 or right >= n:
+                break
+
+    # even palindrome
+    for i in range(1, n-2):
+        if s[i] == s[i+1]:
+            left = i-1
+            right = i+2
+            while s[left] == s[right]:
+                if (right-left+1) > len(res):
+                    res = s[left:right+1]
+                left -= 1
+                right += 1
+                if left < 0 or right >= n:
+                    break
+
+    return res
+```
+
 ## 20. (75%)
 ```python
 def solution(s):
