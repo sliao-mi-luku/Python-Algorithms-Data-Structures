@@ -41,6 +41,21 @@ def solution(temperatures):
     return res
 ```
 
+## 746. (93%)
+```python
+def solution(cost):
+    n = len(cost)
+
+    dp = [0 for _ in range(n)]
+    dp[0] = cost[0]
+    dp[1] = cost[1]
+
+    for i in range(2, n):
+        dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
+
+    return min(dp[-1], dp[-2])
+```
+
 ## 769. (64%)
 ```python
 def solution(arr):
@@ -57,21 +72,6 @@ def solution(arr):
             d[j] = d[x_min]
 
     return len(set(d.values()))
-```
-
-## 746. (93%)
-```python
-def solution(cost):
-    n = len(cost)
-
-    dp = [0 for _ in range(n)]
-    dp[0] = cost[0]
-    dp[1] = cost[1]
-
-    for i in range(2, n):
-        dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
-
-    return min(dp[-1], dp[-2])
 ```
 
 ## 781. (69%)
