@@ -15,6 +15,18 @@ def solution(nums):
     return res        
 ```
 
+## 509. (30%)
+```python
+def solution(n):
+    if n <= 1:
+        return n
+
+    f = [0, 1]
+    for i in range(2, n+1):
+        f.append(f[-1]+f[-2])
+    return f[-1]
+```
+
 ## 581. (95%)
 ```python
 def solution(nums):
