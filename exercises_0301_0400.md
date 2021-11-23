@@ -112,6 +112,25 @@ def solution(input):
     return res
 ```
 
+## 392. (31%)
+```python
+def solution(s, t):
+    if len(s) == 0:
+        return True
+
+    if len(t) == 0:
+        return False
+
+    i = 0
+    for x in t:
+        if s[i] == x:
+            i += 1
+        if i == len(s):
+            return True
+
+    return False
+```
+
 ## 394. (63%)
 ```python
 def solution(s):
