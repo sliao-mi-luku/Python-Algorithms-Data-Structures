@@ -118,6 +118,12 @@ def solution(s):
     return res
 ```
 
+## 1025. (30%)
+```python
+def solution(N):
+    return N % 2 == 0
+```
+
 ## 1047 (97%)
 ```python
 def solution(s):
