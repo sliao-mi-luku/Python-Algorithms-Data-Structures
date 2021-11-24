@@ -321,6 +321,51 @@ def solution(path):
     return "/" + "/".join(history)
 ```
 
+## 91. (89%)
+```python
+def solution(s):
+    n = len(s)
+    dp = [0 for _ in range(n)]
+
+    if s[0] != "0":
+        dp[0] = 1
+    else:
+        return 0
+
+    if n == 1:
+        return dp[0]
+
+    if int(s[:2]) in range(11, 20):
+        dp[1] = 2
+    elif int(s[:2]) in range(21, 27):
+        dp[1] = 2
+    elif s[1] == "0" and s[0] not in ["1", "2"]:
+        dp[1] = 0
+    else:
+        dp[1] = dp[0]
+
+    for i in range(2, n):
+        if s[i-1] in ["0", "3", "4", "5", "6", "7", "8", "9"]:
+            if s[i] == "0":
+                dp[i] = 0
+            else:
+                dp[i] = dp[i-1]
+        elif s[i-1] == "2":
+            if s[i] == "0":
+                dp[i] = dp[i-2]
+            elif s[i] in ["1", "2", "3", "4", "5", "6"]:
+                dp[i] = dp[i-2] + dp[i-1]
+            else:
+                dp[i] = dp[i-1]
+        else: # "1"
+            if s[i] == "0":
+                dp[i] = dp[i-2]
+            else:
+                dp[i] = dp[i-2] + dp[i-1]
+
+    return dp[-1]
+```
+
 ## 94. (89%)
 ```python
 def solution(root):
