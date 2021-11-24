@@ -233,11 +233,36 @@ def solution(n):
 ## 62. (73%)
 ```python
 def solution(m, n):
-
     dp = [[1]*m]*n
-
     for i in range(1, n):
         for j in range(1, m):
+            dp[i][j] = dp[i-1][j] + dp[i][j-1]
+    return dp[-1][-1]
+```
+
+## 63. (61%)
+```python
+def solution(obstacleGrid):
+    m = len(obstacleGrid)
+    n = len(obstacleGrid[0])
+    dp = [[0 for _ in range(n)] for _ in range(m)]
+
+    for i in range(m):
+        if obstacleGrid[i][0] == 0:
+            dp[i][0] = 1
+        else:
+            break
+
+    for j in range(n):
+        if obstacleGrid[0][j] == 0:
+            dp[0][j] = 1
+        else:
+            break
+
+    for i in range(1, m):
+        for j in range(1, n):
+            if obstacleGrid[i][j] == 1:
+                continue
             dp[i][j] = dp[i-1][j] + dp[i][j-1]
 
     return dp[-1][-1]
