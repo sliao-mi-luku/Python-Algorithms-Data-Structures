@@ -153,21 +153,26 @@ def solution(prices):
     return res
 ```
 
-## 139. (55%)
+## 139. (65%)
 ```python
 def solution(s, wordDict):
-
-    n = len(s)
-
+    # dp[i]: s[0], ..., s[i] can be segmented into words in wordDict
     wordDict = set(wordDict)
+    n = len(s)
+    dp = [False for _ in range(n)]
 
-    dp = [0 for _ in range(n+1)]
+    if n == 1:
+        return (s[0] in wordDict)
 
-    dp[0] = True
+    if s[0] in wordDict:
+        dp[0] = True
 
-    for i in range(1, n+1):
+    for i in range(1, n):
+        if s[:i+1] in wordDict:
+            dp[i] = True
+            continue
         for j in range(i):
-            dp[i] = (dp[j] and (s[j:i] in wordDict))
+            dp[i] = dp[j] and s[j+1:i+1] in wordDict
             if dp[i]:
                 break
 
