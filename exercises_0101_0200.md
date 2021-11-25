@@ -175,6 +175,23 @@ def solution(prices):
     return res
 ```
 
+## 122. (51%)
+```python
+def solution(prices):
+    # hold[i]: maximum profit if holding the stock at prices[i]
+    # empty[i]: maximum profit if not holding the stock at prices[i]
+    n = len(prices)
+    hold = [0 for _ in range(n)]
+    empty = [0 for _ in range(n)]
+    hold[0] = -prices[0]
+
+    for i in range(1, n):
+        hold[i] = max(hold[i-1], empty[i-1] - prices[i])
+        empty[i] = max(hold[i-1] + prices[i], empty[i-1])
+
+    return max(hold[-1], empty[-1])
+```
+
 ## 139. (65%)
 ```python
 def solution(s, wordDict):
