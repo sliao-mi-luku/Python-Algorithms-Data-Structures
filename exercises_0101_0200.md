@@ -254,6 +254,29 @@ def solution(tokens):
     return cache[0]
 ```
 
+## 152. (5%)
+```python
+def solution(nums):
+    n = len(nums)
+
+    if n == 1:
+        return nums[0]
+
+    mmax = [0 for _ in range(n)]
+    mmin = [0 for _ in range(n)]
+
+    mmax[0] = nums[0]
+    mmin[0] = nums[0]
+    res = nums[0]
+
+    for i in range(1, n):
+        mmax[i] = max(nums[i], mmax[i-1]*nums[i], mmin[i-1]*nums[i])
+        mmin[i] = min(nums[i], mmax[i-1]*nums[i], mmin[i-1]*nums[i])
+        res = max(res, mmax[i])
+
+    return res
+```
+
 ## 173. (84%)
 ```python
 class solution:
