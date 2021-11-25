@@ -140,6 +140,28 @@ def solution(rowIndex):
     return cur_row
 ```
 
+## 120. (14%)
+```python
+def solution(triangle):
+    n_layers = len(triangle)
+    if n_layers == 1:
+        return triangle[0][0]
+
+    dp = list(triangle)
+
+    for i in range(1, n_layers):
+        n_elements = len(dp[i])
+        for j in range(n_elements):
+            if j == 0:
+                dp[i][j] = dp[i-1][0] + triangle[i][j]
+            elif j == n_elements-1:
+                dp[i][j] = dp[i-1][-1] + triangle[i][j]
+            else:
+                dp[i][j] = min(dp[i-1][j-1], dp[i-1][j]) + triangle[i][j]
+
+    return min(dp[-1])
+```
+
 ## 121. (31%)
 ```python
 def solution(prices):
