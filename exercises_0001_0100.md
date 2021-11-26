@@ -422,6 +422,44 @@ def solution(n):
     return dp[-1]
 ```
 
+## 97. (46%)
+```python
+def solution(s1, s2, s3):
+    n1, n2, n3 = len(s1), len(s2), len(s3)
+
+    if n1 + n2 != n3:
+        return False
+
+    if n1 == n2 == n3 == 0:
+        return True
+
+    # dp[i+1][j+1]: s3[0:i+j+1] is interleaved by s1[0:i+1] and s2[0:j+1]
+    dp = [[False for _ in range(n2+1)] for _ in range(n1+1)]
+
+    dp[0][0] = True
+    for i in range(n1):
+        if s1[i] == s3[i]:
+            dp[i+1][0] = True
+        else:
+            break
+
+    for j in range(n2):
+        if s2[j] == s3[j]:
+            dp[0][j+1] = True
+        else:
+            break
+
+    for i in range(n1):
+        for j in range(n2):
+            # see if s1[0], ..., s1[i] and s2[0], ..., s2[j] combine to s3[0], ..., s3[i+j]
+            if s1[i] == s3[i+j+1] and dp[i][j+1]:
+                dp[i+1][j+1] = True
+            elif s2[j] == s3[i+j+1] and dp[i+1][j]:
+                dp[i+1][j+1] = True
+
+    return dp[-1][-1]
+```
+
 ## 99. (82%)
 ```python
 def solution(root):
