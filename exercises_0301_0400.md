@@ -66,6 +66,30 @@ def solution(num):
     return res
 ```
 
+## 357. (99%)
+```python
+def solution(n):
+    d = dict({0: 1, 1: 10})
+    
+    def factorial(n):
+        if n in d:
+            return d[n]
+        res = 1
+        for x in range(2, n+1):
+            res *= x
+        d[n] = res
+        return res
+
+    if n == 0:
+        return 1
+    if n == 1:
+        return 10
+    res = 1
+    for i in range(1, n+1):
+        res += (factorial(10)-factorial(9))//factorial(10-i)
+    return res
+```
+
 ## 388. (60%)
 ```python
 def solution(input):
