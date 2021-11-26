@@ -382,6 +382,33 @@ def solution(root):
     return recursion(root, [])
 ```
 
+## 95. (80%)
+```python
+def solution(n):
+    d = dict()
+
+    def recursion(start, end):
+        if (start, end) in d:
+            return d[(start, end)]
+        if start > end:
+            return [None]
+
+        res = []
+        for x in range(start, end+1):
+            left = recursion(start, x-1)
+            right = recursion(x+1, end)
+            for L in left:
+                for R in right:
+                    node = TreeNode(x)
+                    node.left = L
+                    node.right = R
+                    res.append(node)
+        d[(start, end)] = res
+        return res
+
+    return recursion(1, n)
+```
+
 ## 96. (12%)
 ```python
 def solution(n):
