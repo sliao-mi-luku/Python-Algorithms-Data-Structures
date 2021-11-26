@@ -67,7 +67,7 @@ def solution(matrix):
         if matrix[0][j] == "1":
             dp[0][j] = 1
             res = 1
-    
+
     for i in range(1, n):
         for j in range(1, m):
             if matrix[i][j] == "1":
@@ -180,4 +180,28 @@ def solution(n):
         n -= 1
 
     return res
+```
+
+## 300. (78%)
+```python
+def solution(nums):
+    L = [nums[0]]
+
+    for x in nums[1:]:
+        if x < L[0]:
+            L[0] = x
+        elif x > L[-1]:
+            L.append(x)
+        elif L[0] < L[-1]:
+            left = 0
+            right = len(L)-1
+            while left < right:
+                mid = left + (right-left)//2
+                if L[mid] < x:
+                    left = mid + 1
+                else:
+                    right = mid
+            L[right] = x
+
+    return len(L)
 ```
