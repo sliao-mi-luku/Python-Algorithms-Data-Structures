@@ -1,3 +1,23 @@
+## 309. (81%)
+```python
+def solution(prices):
+    n = len(prices)
+
+    if n == 1:
+        return 0
+
+    hold = [0 for _ in range(n)]
+    empty = [0 for _ in range(n)]
+    
+    hold[0] = -prices[0]
+
+    for i in range(1, n):
+        hold[i] = max(empty[i-2]-prices[i], hold[i-1])
+        empty[i] = max(hold[i-1]+prices[i], empty[i-1])
+
+    return max(hold[-1], empty[-1])
+```
+
 ## 316. (97%)
 ```python
 def solution(s):
@@ -70,7 +90,7 @@ def solution(num):
 ```python
 def solution(n):
     d = dict({0: 1, 1: 10})
-    
+
     def factorial(n):
         if n in d:
             return d[n]
