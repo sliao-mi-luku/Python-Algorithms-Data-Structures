@@ -82,7 +82,7 @@ def solution(root):
 
         rob_node = node.val + not_rob_left + not_rob_right
         not_rob_node = max(rob_left, not_rob_left) + max(rob_right, not_rob_right)
-        
+
         return [rob_node, not_rob_node]
 
     return max(dfs(root))
@@ -102,6 +102,21 @@ def solution(num):
         else:
             res.append(res[x//2]+1)
     return res
+```
+
+## 343. (76%)
+```python
+def solution(n):
+    if n == 2:
+        return 1
+    if n == 3:
+        return 2
+
+    res = 1
+    while n > 4:
+        n -= 3
+        res *=3
+    return res*n
 ```
 
 ## 357. (99%)
