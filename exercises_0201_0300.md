@@ -182,6 +182,30 @@ def solution(n):
     return res
 ```
 
+## 279. (38%)
+```python
+def solution(n):
+    # L = [1, 4, 9, 16, 25, .., 10000]
+    L = []
+    for x in range(1, 101):
+        sqx = int(x**2)
+        if sqx <= n:
+            L.append(sqx)
+        else:
+            break
+
+    # dp[i]: least number of perfect square numbers that sum to i
+    dp = [x for x in range(n+1)]
+
+    for x in range(1, n+1):
+        for y in L:
+            if y > x:
+                break
+            dp[x] = min(dp[x], 1 + dp[x-y])
+
+    return dp[-1]
+```
+
 ## 300. (78%)
 ```python
 def solution(nums):
