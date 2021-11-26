@@ -382,6 +382,19 @@ def solution(root):
     return recursion(root, [])
 ```
 
+## 96. (12%)
+```python
+def solution(n):
+    dp = [0 for _ in range(n+1)]
+    dp[0] = 1
+
+    for i in range(1, n+1):
+        for r in range(i):
+            dp[i] += dp[r] * dp[i-r-1]
+
+    return dp[-1]
+```
+
 ## 99. (82%)
 ```python
 def solution(root):
