@@ -192,6 +192,41 @@ def solution(prices):
     return max(hold[-1], empty[-1])
 ```
 
+## 131. (26%)
+```python
+def solution(s):
+    n = len(s)
+    dp = [[False for _ in range(n)] for _ in range(n)]
+    # dp[i][j]: s[i], ..., s[j] is palindrome
+    for i in range(n):
+        dp[i][i] = True
+
+    for i in range(n-1):
+        if s[i] == s[i+1]:
+            dp[i][i+1] = True
+
+    for k in range(3, n+1): # substring of length k
+        for i in range(n-k+1):
+            j = i + k - 1
+            # check s[i], ..., s[j] is a palindrome or not
+            if s[i] != s[j]:
+                continue
+            dp[i][j] = dp[i+1][j-1]
+
+    def recursion(start):
+        if start > n-1:
+            return [[]]
+        res = []
+        for end in range(start, n):
+            if dp[start][end]:
+                right = recursion(end+1) # ex. [["a", "a"], ["aa"]]
+                for R in right:
+                    res.append([s[start:end+1]] + R)
+        return res
+
+    return recursion(0)
+```
+
 ## 139. (65%)
 ```python
 def solution(s, wordDict):
