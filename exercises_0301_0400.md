@@ -8,7 +8,7 @@ def solution(prices):
 
     hold = [0 for _ in range(n)]
     empty = [0 for _ in range(n)]
-    
+
     hold[0] = -prices[0]
 
     for i in range(1, n):
@@ -68,6 +68,24 @@ def solution(preorder):
             to_fill += 1
 
     return to_fill == 0
+```
+
+## 337. (31%)
+```python
+def solution(root):
+
+    def dfs(node):
+        if not node:
+            return [0, 0]
+        rob_left, not_rob_left = dfs(node.left)
+        rob_right, not_rob_right = dfs(node.right)
+
+        rob_node = node.val + not_rob_left + not_rob_right
+        not_rob_node = max(rob_left, not_rob_left) + max(rob_right, not_rob_right)
+        
+        return [rob_node, not_rob_node]
+
+    return max(dfs(root))
 ```
 
 ## 338. (82%)
