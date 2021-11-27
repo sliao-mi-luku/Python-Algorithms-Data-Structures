@@ -42,7 +42,7 @@ def minimumBuckets(street):
 
 ## 2087.
 ```python
-def minCost(startPos, homePos, rowCosts, colCosts):
+def solution(startPos, homePos, rowCosts, colCosts):
     n = len(rowCosts)
     m = len(colCosts)
 
@@ -65,5 +65,55 @@ def minCost(startPos, homePos, rowCosts, colCosts):
         for i in range(homePos[1], startPos[1]):
             res += colCosts[i]
 
+    return res
+```
+
+## 2088.
+```python
+def solution(grid):
+    n = len(grid)
+    m = len(grid[0])
+
+    left = [[0 for _ in range(m)] for _ in range(n)]
+    right = [[0 for _ in range(m)] for _ in range(n)]
+
+    for i in range(n):
+        for j in range(m):
+            if grid[i][j] == 0:
+                continue
+            if j == 0:
+                left[i][j] = 1
+            else:
+                left[i][j] = left[i][j-1] + 1
+
+    for i in range(n):
+        for j in range(m-1, -1, -1):
+            if grid[i][j] == 0:
+                continue
+            if j == m-1:
+                right[i][j] = 1
+            else:
+                right[i][j] = right[i][j+1] + 1
+
+    res = 0
+    for i in range(n):
+        for j in range(m):
+            if grid[i][j] == 1:
+                # pyramidal
+                w = 1
+                for k in range(i+1, n):
+                    w += 1
+                    if left[k][j] >= w and right[k][j] >= w:
+                        res += 1
+                    else:
+                        break
+                # inverse pyramidal
+                w = 1
+                for k in range(i-1, -1, -1):
+                    w += 1
+                    if left[k][j] >= w and right[k][j] >= w:
+                        res += 1
+                    else:
+                        break
     return res
 ```
