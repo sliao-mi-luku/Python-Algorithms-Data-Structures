@@ -22,3 +22,20 @@ def solution(words1, words2):
 
     return res
 ```
+
+## 2086.
+```python
+def minimumBuckets(street):
+    n = len(street)
+
+    if street == "H":
+        return -1
+
+    if street[:2] == "HH" or street[-2:] == "HH":
+        return -1
+
+    if "HHH" in street:
+        return -1
+
+    return street.count("H") - street.count("H.H")
+```
