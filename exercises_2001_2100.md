@@ -39,3 +39,31 @@ def minimumBuckets(street):
 
     return street.count("H") - street.count("H.H")
 ```
+
+## 2087.
+```python
+def minCost(startPos, homePos, rowCosts, colCosts):
+    n = len(rowCosts)
+    m = len(colCosts)
+
+    if startPos == homePos:
+        return 0
+
+    res = 0
+
+    if startPos[0] < homePos[0]:
+        for i in range(homePos[0], startPos[0], -1):
+            res += rowCosts[i]
+    else:
+        for i in range(homePos[0], startPos[0]):
+            res += rowCosts[i]
+
+    if startPos[1] < homePos[1]:
+        for i in range(homePos[1], startPos[1], -1):
+            res += colCosts[i]
+    else:
+        for i in range(homePos[1], startPos[1]):
+            res += colCosts[i]
+
+    return res
+```
