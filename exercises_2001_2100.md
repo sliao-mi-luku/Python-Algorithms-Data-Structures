@@ -155,3 +155,28 @@ def solution(nums, k):
 
     return res
 ```
+
+## 2091
+```python
+def solution(nums):
+    n = len(nums)
+
+    if n == 1:
+        return 1
+
+    mmin = float('inf')
+    mmax = -float('inf')
+
+    for i, x in enumerate(nums):
+        if x < mmin:
+            mmin = x
+            mmin_idx = i
+
+        if x > mmax:
+            mmax = x
+            mmax_idx = i
+
+    i, j = min(mmin_idx, mmax_idx), max(mmin_idx, mmax_idx)
+
+    return min(j+1, n-i, i+1+n-j)
+```
