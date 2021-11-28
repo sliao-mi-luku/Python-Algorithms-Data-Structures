@@ -130,3 +130,28 @@ def solution(nums, target):
             break
     return res
 ```
+
+## 2090
+```python
+def solution(nums, k):
+    n = len(nums)
+
+    if k == 0:
+        return nums
+
+    if n == 1:
+        return [-1]
+
+    res = [-1 for _ in range(n)]
+    cum = [nums[0]]
+
+    for x in nums[1:]:
+        cum.append(cum[-1] + x)
+
+    for i, x in enumerate(nums):
+        if (i-k) < 0 or (i+k) > (n-1):
+            continue
+        res[i] = int((cum[i+k] - cum[i-k] + nums[i-k])/(2*k+1))
+
+    return res
+```
