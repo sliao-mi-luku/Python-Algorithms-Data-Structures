@@ -117,3 +117,16 @@ def solution(grid):
                         break
     return res
 ```
+
+## 2089
+```python
+def solution(nums, target):
+    nums.sort()
+    res = []
+    for i, x in enumerate(nums):
+        if x == target:
+            res.append(i)
+        if x > target:
+            break
+    return res
+```
