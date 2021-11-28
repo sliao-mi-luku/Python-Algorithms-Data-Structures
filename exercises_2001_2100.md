@@ -180,3 +180,46 @@ def solution(nums):
 
     return min(j+1, n-i, i+1+n-j)
 ```
+
+## 2092
+```python
+def solution(n, meetings, firstPerson):
+    meeting_history = dict()
+
+    for x, y, t in meetings:
+        meeting_history[t] = meeting_history.get(t, [])
+        meeting_history[t].append([x, y])
+
+    prev_knows = set([0, firstPerson])
+
+    def bfs(x):
+        self.gossip[x] = True
+        for y in self.graph[x]:
+            if not self.gossip[y]:
+                bfs(y)
+
+    for t in sorted(meeting_history.keys()):
+        self.graph = dict()
+        self.gossip = dict()
+
+        for x, y in meeting_history[t]:
+            if x in prev_knows or y in prev_knows:
+                prev_knows.add(x)
+                prev_knows.add(y)
+            else:
+                self.graph[x] = self.graph.get(x, []) + [y]
+                self.graph[y] = self.graph.get(y, []) + [x]
+
+        for x in self.graph:
+            self.gossip[x] = True if x in prev_knows else False
+
+        for x in self.graph:
+            if self.gossip[x]:
+                bfs(x)
+
+        for x in self.gossip:
+            if self.gossip[x]:
+                prev_knows.add(x)
+
+    return list(prev_knows)
+```
