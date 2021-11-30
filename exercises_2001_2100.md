@@ -14,6 +14,23 @@ def solution(colors):
     return res
 ```
 
+## 2079.
+```python
+def solution(plants, capacity):
+    n = len(plants)
+    w = capacity - plants[0]
+    res = 1
+
+    for i in range(1, n):
+        if w < plants[i]:
+            res += 2*i
+            w = capacity
+        res += 1
+        w -= plants[i]
+
+    return res
+```
+
 ## 2085.
 ```python
 def solution(words1, words2):
