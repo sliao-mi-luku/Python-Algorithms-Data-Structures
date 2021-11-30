@@ -1,3 +1,19 @@
+## 2078.
+```python
+def solution(colors):
+    n = len(colors)
+    d = dict()
+    res = 0
+
+    for i, x in enumerate(colors):
+        for y in d:
+            if y != x:
+                res = max(res, i-d[y])
+        d[x] = min(d.get(x, n), i)
+
+    return res
+```
+
 ## 2085.
 ```python
 def solution(words1, words2):
