@@ -256,3 +256,46 @@ def solution(n, meetings, firstPerson):
 
     return list(prev_knows)
 ```
+
+## 2094.
+```python
+def solution(digits):
+    arr = [0 for _ in range(10)] # 0, 1, 2, ..., 9
+    res = set()
+
+    for x in digits:
+        arr[x] += 1
+
+    # no answers
+    if sum(arr[1:]) == 0:
+        return []
+
+    if arr[0]+arr[2]+arr[4]+arr[6]+arr[8] == 0:
+        return []
+
+    def recursion(idx, ans, arr):
+        if idx == 0:
+            for i in range(1, 10):
+                new_arr = list(arr)
+                if new_arr[i] != 0:
+                    new_arr[i] -= 1
+                    recursion(1, str(i), new_arr)
+        elif idx == 1:
+            for i in range(10):
+                new_arr = list(arr)
+                if new_arr[i] != 0:
+                    new_arr[i] -= 1
+                    recursion(2, ans+str(i), new_arr)
+        else:
+            new_arr = list(arr)
+            for i in [0, 2, 4, 6, 8]:
+                if new_arr[i] != 0:
+                    if ans+str(i) not in res:
+                        res.add(int(ans+str(i)))
+
+    recursion(0, "", arr)
+
+    res = list(res)
+    res.sort()
+    return res
+```
