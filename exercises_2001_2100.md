@@ -299,3 +299,26 @@ def solution(digits):
     res.sort()
     return res
 ```
+
+## 2095.
+```python
+def solution(head):
+    arr = []
+    cur = head
+    while cur:
+        arr.append(cur)
+        cur = cur.next
+
+    n = len(arr)
+    if n == 1:
+        return None
+
+    if n % 2 == 0:
+        idx = n//2
+    else:
+        idx = (n-1)//2
+
+    arr[idx-1].next = arr[idx].next
+
+    return arr[0]
+```
