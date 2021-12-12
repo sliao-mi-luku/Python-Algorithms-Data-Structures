@@ -322,3 +322,24 @@ def solution(head):
 
     return arr[0]
 ```
+
+## 2099.
+```python
+def solution(nums, k):
+    arr = list(nums)
+    arr.sort(reverse=True)
+
+    d = dict()
+
+    for x in arr[:k]:
+        d[x] = d.get(x, 0) + 1
+
+    res = []
+
+    for x in nums:
+        if d.get(x, 0) > 0:
+            res.append(x)
+            d[x] -= 1
+
+    return res
+```
