@@ -27,6 +27,27 @@ def solution(n):
     return f[-1]
 ```
 
+## 518.
+```python
+def solution(amount, coins):
+    coins.sort()
+
+    if amount < coins[0]:
+        return 1
+
+    dp = [0 for _ in range(amount+1)]
+    # dp[i]: number of combination to sum up to i
+    dp[0] = 1
+    # dp[i] = sum_c(dp[i-c])
+
+    for c in coins:
+        for i in range(1, amount+1):
+            if c <= i:
+                dp[i] += dp[i-c]
+
+    return dp[-1]
+```
+
 ## 581. (95%)
 ```python
 def solution(nums):
