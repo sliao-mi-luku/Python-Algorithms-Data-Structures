@@ -1,3 +1,21 @@
+## 2103.
+```python
+def solution(rings):
+    n = len(rings)//2
+    s = [set() for _ in range(10)]
+
+    for i in range(n):
+        color, idx = rings[2*i], int(rings[2*i+1])
+        s[idx].add(color)
+
+    res = 0
+    for i in range(10):
+        if len(s[i]) == 3:
+            res += 1
+
+    return res
+```
+
 ## 2119.
 ``` python
 def solution(num):
