@@ -143,6 +143,30 @@ def solution(n):
     return res
 ```
 
+## 376.
+```python
+def solution(nums):
+
+    n = len(nums)
+
+    if n == 1:
+        return 1
+
+    res = 1
+
+    dp_p = [1 for _ in range(n)]
+    dp_n = [1 for _ in range(n)]
+
+    for i in range(1, n):
+        for j in range(i):
+            if nums[i] > nums[j]:
+                dp_p[i] = max(dp_p[i], dp_n[j]+1)
+            if nums[i] < nums[j]:
+                dp_n[i] = max(dp_n[i], dp_p[j]+1)
+
+    return max(max(dp_p), max(dp_n))
+```
+
 ## 388. (60%)
 ```python
 def solution(input):
