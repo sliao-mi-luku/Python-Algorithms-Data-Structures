@@ -460,6 +460,24 @@ def solution(s1, s2, s3):
     return dp[-1][-1]
 ```
 
+## 98.
+```python
+def solution(root):
+    def inorder(node, traversal):
+        if node:
+            if node.left:
+                traversal = inorder(node.left, traversal)
+            traversal.append(node.val)
+            if node.right:
+                traversal = inorder(node.right, traversal)
+            return traversal
+    traversal = inorder(root, [])
+    for i in range(len(traversal)-1):
+        if traversal[i+1] <= traversal[i]:
+            return False
+    return True
+```
+
 ## 99. (82%)
 ```python
 def solution(root):
