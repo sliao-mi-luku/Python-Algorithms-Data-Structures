@@ -104,6 +104,42 @@ def solution(num):
     return res
 ```
 
+## 341.
+```python
+class NestedIterator:
+    def __init__(self, nestedList: [NestedInteger]):
+        self.nestedList = nestedList
+        self.arr = []
+        # decode
+        self.decode(nestedList)
+        self.n = len(self.arr)
+        self.i = 0
+
+    def decode(self, nestedList):
+        """
+        Decode a nestedList
+        """
+        for x in nestedList:
+            if x.isInteger():
+                self.arr.append(x.getInteger())
+            else:
+                self.decode(x.getList())
+
+    def next(self) -> int:
+        """
+        Return the next integer
+        """
+        ans = self.arr[self.i]
+        self.i += 1
+        return ans
+
+    def hasNext(self) -> bool:
+        """
+        Return True if there is an following element
+        """
+        return self.i < self.n
+```
+
 ## 343. (76%)
 ```python
 def solution(n):
