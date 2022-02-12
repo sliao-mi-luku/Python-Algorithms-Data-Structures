@@ -104,6 +104,23 @@ def solution(num):
     return res
 ```
 
+## 339.
+```python
+def solution(nestedList):
+    res = 0
+
+    def decode(arr, depth):
+        for x in arr:
+            if x.isInteger():
+                res += x.getInteger() * depth
+            else:
+                decode(x.getList(), depth+1)
+
+    decode(nestedList, 1)
+
+    return res
+```
+
 ## 341.
 ```python
 class NestedIterator:
