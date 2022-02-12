@@ -1,4 +1,4 @@
-## 1614 (96%)
+## 1614
 ```python
 def solution(s):
 
@@ -16,7 +16,7 @@ def solution(s):
     return res
 ```
 
-## 1646. (8%)
+## 1646
 ```python
 def solution(n):
     if n <= 1:
@@ -30,6 +30,26 @@ def solution(n):
             j = (i-1)//2
             dp[i] = dp[j] + dp[j+1]
     return max(dp)
+```
+
+## 1650.
+```python
+def solution(p, q):
+    x = p
+    y = q
+
+    while x != y:
+        if x.parent:
+            x = x.parent
+        else:
+            x = q
+
+        if y.parent:
+            y = y.parent
+        else:
+            y = p
+
+    return x
 ```
 
 ## 1653. (84%)
