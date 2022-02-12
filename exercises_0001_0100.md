@@ -152,6 +152,26 @@ def solution(nums):
     return False
 ```
 
+## 56.
+```python
+def solution(intervals):
+    intervals.sort(key=lambda x: (x[0], x[1]))
+    stack = []
+    for x in intervals:
+        if not stack:
+            stack.append(x)
+        else:
+            if stack[-1][1] < x[0]:
+                stack.append(x)
+            else:
+                y = stack.pop()
+                if y[1] < x[1]:
+                    stack.append([y[0], x[1]])
+                else:
+                    stack.append([y[0], y[1]])
+    return stack
+```
+
 ## 57. (58%)
 ```python
 def solution(intervals, newInterval):
