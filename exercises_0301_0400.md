@@ -18,6 +18,42 @@ def solution(prices):
     return max(hold[-1], empty[-1])
 ```
 
+## 314.
+```python
+def solution(root):
+
+    if not root:
+        return []
+
+    H_dict = dict()
+
+    root.h = 0
+
+    nodes_cur_level = [root]
+
+    while nodes_cur_level:
+        nodes_next_level = []
+
+        for node in nodes_cur_level:
+            H_dict[node.h] = H_dict.get(node.h, []) + [node.val]
+
+            if node.left:
+                node.left.h = node.h - 1
+                nodes_next_level.append(node.left)
+
+            if node.right:
+                node.right.h = node.h + 1
+                nodes_next_level.append(node.right)
+
+        nodes_cur_level = list(nodes_next_level)
+
+    res = []
+    for h in sorted(H_dict.keys()):
+        res.append(H_dict[h])
+
+    return res
+```
+
 ## 316. (97%)
 ```python
 def solution(s):
