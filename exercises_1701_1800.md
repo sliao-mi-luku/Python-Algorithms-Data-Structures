@@ -35,3 +35,18 @@ def solution(s, x, y):
 
     return res
 ```
+
+## 1762.
+```python
+def solution(heights):
+    n = len(heights)
+    res = [n-1]
+
+    for i in range(n-2, -1, -1):
+        if heights[i] > heights[res[-1]]:
+            res.append(i)
+
+    res.reverse()
+
+    return res
+```
