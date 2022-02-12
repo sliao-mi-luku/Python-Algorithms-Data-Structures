@@ -50,6 +50,13 @@ def solution(s):
     return prefix + s
 ```
 
+## 215.
+```python
+def solution(nums, k):
+    nums.sort(reverse=True)
+    return nums[k-1]
+```
+
 ## 221. (44%)
 ```python
 def solution(matrix):
