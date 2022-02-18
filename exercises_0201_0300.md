@@ -124,6 +124,24 @@ def solution(s):
     return sum(new_stack)            
 ```
 
+## 230.
+```python
+def solution(root, k):
+        
+    def recursion(node, traversal):
+        if node:
+            if node.left:
+                traversal = recursion(node.left, traversal)
+            traversal.append(node.val)
+            if node.right:
+                traversal = recursion(node.right, traversal)
+            return traversal
+
+    traversal = recursion(root, [])
+
+    return traversal[k-1]
+```
+
 ## 234. (60%)
 ```python
 def solution(head):
