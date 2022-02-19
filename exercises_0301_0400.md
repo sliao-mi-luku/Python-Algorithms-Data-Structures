@@ -232,6 +232,51 @@ def solution(n):
     return res
 ```
 
+## 366.
+```python
+def solution(root):
+        nodes_cur_level = [root]
+        while nodes_cur_level:
+            nodes_next_level = []
+            for node in nodes_cur_level:
+                if not node.left and not node.right:
+                    node.is_leaf = True
+                else:
+                    node.is_leaf = False
+                if node.left:
+                    nodes_next_level.append(node.left)
+                if node.right:
+                    nodes_next_level.append(node.right)
+            nodes_cur_level = nodes_next_level
+
+        res = []
+        while not root.is_leaf:
+            nodes_cur_level = [root]
+            new_leaves = []
+            while nodes_cur_level:
+                nodes_next_level = []
+                for node in nodes_cur_level:
+                    if node.left:
+                        if node.left.is_leaf:
+                            new_leaves.append(node.left.val)
+                            node.left = None
+                        else:
+                            nodes_next_level.append(node.left)
+                    if node.right:
+                        if node.right.is_leaf:
+                            new_leaves.append(node.right.val)
+                            node.right = None
+                        else:
+                            nodes_next_level.append(node.right)
+                    if not node.left and not node.right:
+                        node.is_leaf = True
+                nodes_cur_level = nodes_next_level
+            res.append(new_leaves)
+
+        res.append([root.val])
+        return res
+```
+
 ## 376.
 ```python
 def solution(nums):
