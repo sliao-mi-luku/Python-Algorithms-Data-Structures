@@ -228,6 +228,19 @@ class Solution:
         return self.sum/self.n
 ```
 
+## 347.
+```python
+def solution(nums, k):
+    d = dict()
+    for x in nums:
+        d[x] = d.get(x, 0) + 1
+    res = []
+    for x, y in sorted(d.items(), key=lambda x: x[1], reverse=True):
+        res.append(x)
+        if len(res) == k:
+            return res
+```
+
 ## 357. (99%)
 ```python
 def solution(n):
