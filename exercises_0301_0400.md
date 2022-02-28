@@ -208,6 +208,26 @@ def solution(n):
     return res*n
 ```
 
+## 346.
+```python
+class Solution:
+    def __init__(self, size: int):
+        self.size = size
+        self.n = 0
+        self.queue = []
+        self.sum = 0
+
+    def next(self, val: int) -> float:
+        self.n = min(self.n+1, self.size)
+        self.queue.append(val)
+        self.sum += val
+
+        if len(self.queue) > self.size:
+            self.sum -= self.queue.pop(0)
+            
+        return self.sum/self.n
+```
+
 ## 357. (99%)
 ```python
 def solution(n):
