@@ -39,6 +39,26 @@ def solution(n, logs):
 
     return res    
 ```
+
+## 646.
+```python
+def solution(pairs):
+    n = len(pairs)
+
+    pairs.sort(key=lambda x: (x[1], x[0]))
+
+    cur = -1001
+    res = 0
+
+    for x, y in pairs:
+        if x > cur:
+            res += 1
+            cur = y
+
+    return res
+```
+
+
 ## 654. (81%)
 ```python
 class Solution:
