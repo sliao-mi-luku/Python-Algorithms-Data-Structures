@@ -73,6 +73,39 @@ def solution(s):
     return res
 ```
 
+## 15.
+```python
+def solution(nums):
+    res = []
+    nums.sort()
+    searched = set()
+
+    def twoSum(nums, start_idx, target):
+        ans = []
+        s = set()
+        for i in range(start_idx, len(nums)):
+            if nums[i] in s:
+                ans.append([nums[i], target-nums[i]])
+            s.add(target-nums[i])
+        return ans                
+    
+    for i in range(len(nums)-2):
+        if nums[i] > 0:
+            break
+        target = -nums[i]
+        if target in searched:
+            continue
+        searched.add(target)
+        ans = twoSum(nums, i+1, target)
+        if ans:
+            for y, z in ans:
+                sorted_xyz = sorted([nums[i], y, z])
+                res.append(tuple(sorted_xyz))
+
+    res = set(res)
+    return [[x[0], x[1], x[2]] for x in res]        
+```
+
 ## 20. (75%)
 ```python
 def solution(s):
