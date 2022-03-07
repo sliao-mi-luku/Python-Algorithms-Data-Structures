@@ -88,7 +88,7 @@ def solution(nums):
                 ans.append([nums[i], target-nums[i]])
             s.add(target-nums[i])
         return ans                
-    
+
     for i in range(len(nums)-2):
         if nums[i] > 0:
             break
@@ -141,6 +141,47 @@ def solution(n):
         s = new
 
     return list(s)
+```
+
+## 36.
+```python
+def solution(board):
+    # check rows
+    for i in range(9):
+        visited = [False]*10
+        for j in range(9):
+            if board[i][j] == ".":
+                continue
+            if visited[int(board[i][j])]:
+                return False
+            visited[int(board[i][j])] = True
+
+    # check columns
+    for j in range(9):
+        visited = [False]*10
+        for i in range(9):
+            if board[i][j] == ".":
+                continue
+            if visited[int(board[i][j])]:
+                return False
+            visited[int(board[i][j])] = True
+
+    # check 3x3 grids
+    # [0][0], [0][3], [0][6]
+    # [3][0], [3][3], [3][6]
+    # [6][0], [6][3], [6][6]
+
+    for x in [0, 3, 6]:
+        for y in [0, 3, 6]:
+            visited = [False]*10
+            for i in range(3):
+                for j in range(3):
+                    if board[x+i][y+j] == ".":
+                        continue
+                    if visited[int(board[x+i][y+j])]:
+                        return False
+                    visited[int(board[x+i][y+j])] = True
+    return True
 ```
 
 ## 45. (52%)
