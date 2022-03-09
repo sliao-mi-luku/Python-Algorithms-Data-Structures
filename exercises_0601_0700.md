@@ -108,6 +108,39 @@ def solution(s):
     return not stack_left
 ```
 
+## 687.
+```python
+def solution(root):
+    if not root:
+        return 0
+
+    res = 0
+
+    def recursion(node):
+        nonlocal res
+        if not node:
+            return 0
+
+        left = recursion(node.left)
+        right = recursion(node.right)
+
+        if node.left and node.left.val == node.val:
+            left += 1
+        else:
+            left = 0
+
+        if node.right and node.right.val == node.val:
+            right += 1
+        else:
+            right = 0
+
+        res = max(res, left+right)
+        return max(left, right)    
+
+    _ = recursion(root)
+    return res
+```
+
 ## 695. (55%)
 ```python
 def solution(self, grid):
