@@ -224,7 +224,7 @@ class Solution:
 
         if len(self.queue) > self.size:
             self.sum -= self.queue.pop(0)
-            
+
         return self.sum/self.n
 ```
 
@@ -427,4 +427,18 @@ def solution(s):
             stack.append(x)
 
     return "".join(stack)
+```
+
+## 398.
+```python
+class Solution:
+    def __init__(self, nums):
+        self.d = dict()
+        for i, x in enumerate(nums):
+            self.d[x] = self.d.get(x, []) + [i]
+
+    def pick(self, target):
+        num_target = len(self.d[target])
+        r = num_target*random.random()
+        return self.d[target][int(r)]
 ```
