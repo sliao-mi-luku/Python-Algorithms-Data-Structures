@@ -108,6 +108,27 @@ def solution(s):
     return not stack_left
 ```
 
+## 680.
+```python
+def solution(s):
+    def check(s, deletion_used=False):
+        left = 0
+        right = len(s)-1
+
+        while left < right:
+            if s[left] == s[right]:
+                left += 1
+                right -= 1
+            else:
+                if deletion_used:
+                    return False
+                else:
+                    return check(s[left:right], True) or check(s[left+1:right+1], True)
+        return True
+
+    return check(s, False)
+```
+
 ## 687.
 ```python
 def solution(root):
